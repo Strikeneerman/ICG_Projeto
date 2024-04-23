@@ -336,16 +336,16 @@
 
             const player = sceneElements.sceneGraph.getObjectByName("player");
 
-            if (keyD && (player.position.x < 3 || player.position.z < 3)) {
+            if (keyD) {
                 player.translateZ(dispX);
             }
-            if (keyW && (player.position.x < 4.5 || player.position.z > -4.5)) {
+            if (keyW) {
                 player.translateX(dispZ);
             }
-            if (keyA && (player.position.x > -3 || player.position.z > -3)) {
+            if (keyA) {
                 player.translateZ(-dispX);
             }
-            if (keyS && (player.position.x > -4.5 || player.position.z < 4.5)) {
+            if (keyS) {
                 player.translateX(-dispZ);
             }
             if (keyQ) {
