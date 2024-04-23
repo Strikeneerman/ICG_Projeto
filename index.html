@@ -328,7 +328,7 @@
         var dispX = 0.05, dispZ = 0.05;
 
         //To keep track of the keyboard - WASD
-        var keyD = false, keyA = false, keyS = false, keyW = false;
+        var keyD = false, keyA = false, keyS = false, keyW = false, keyQ = false, keyE = false;
 
         function computeFrame(time) {
 
@@ -347,6 +347,12 @@
             }
             if (keyS && (player.position.x > -4.5 || player.position.z < 4.5)) {
                 player.translateX(-dispZ);
+            }
+            if (keyQ) {
+                player.rotateOnAxis(new THREE.Vector3(0, 1, 0),0.05)
+            }
+            if (keyE) {
+                player.rotateOnAxis(new THREE.Vector3(0, -1, 0),0.05)
             }
 
             // Rendering
@@ -405,6 +411,13 @@
                 case 87: //w
                     keyW = true;
                     break;
+                case 69: //a
+                    keyE = true;
+                    break;
+                case 81: //w
+                    keyQ = true;
+                    break;
+                
             }
         }
 
@@ -421,6 +434,12 @@
                     break;
                 case 87: //w
                     keyW = false;
+                    break;
+                case 69: //a
+                    keyE = false;
+                    break;
+                case 81: //w
+                    keyQ = false;
                     break;
             }
         }
