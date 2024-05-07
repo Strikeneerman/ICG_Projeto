@@ -216,76 +216,76 @@
                 cubeObject.castShadow = true;
                 cubeObject.receiveShadow = true;
 
-				// ************************** //
-                // Create a cube head
-                // ************************** //
+				// // ************************** //
+                // // Create a cube head
+                // // ************************** //
+                
+
+				// const headGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+                // const headMaterial = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,0)' });
+                // const headObject = new THREE.Mesh(headGeometry, headMaterial);
+                // character.add(headObject);
+
+                // // Set position of the head
+
+                // headObject.translateY(1.25);
+
+				// //headObject.rotation.y = -0.25 * Math.PI;
+
+                // // Set shadow property
+                // headObject.castShadow = true;
+                // headObject.receiveShadow = true;
+
+				// // ************************** //
+                // // Create an arm
+                // // ************************** //
+
+				// const armLength = 1;
+				// const armMuscle = 0.3;
+
+				// const armGeometry = new THREE.BoxGeometry(armLength, 0.3, armMuscle);
+                // const armMaterial = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,0)' });
+                // const armObject = new THREE.Mesh(armGeometry, armMaterial);
+                // character.add(armObject);
+
+                // // Set position of the arm
+
+                // armObject.translateY(0.5);
+				// armObject.translateZ(0.65);
+				// armObject.translateX(0.65);
+
+				// //armObject.rotation.y = -0.25 * Math.PI;
+
+                // // Set shadow property
+                // armObject.castShadow = true;
+                // armObject.receiveShadow = true;
+
+				// // ************************** //
+                // // Create the other arm
+                // // ************************** //
+
+				// const arm2Geometry = new THREE.BoxGeometry(armLength, 0.3, armMuscle);
+                // const arm2Material = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,0)' });
+                // const arm2Object = new THREE.Mesh(arm2Geometry, arm2Material);
+                // character.add(arm2Object);
+
+                // // Set position of the arm
+
+                // arm2Object.translateY(0.5);
+				// arm2Object.translateZ(-0.65);
+				// arm2Object.translateX(0.65);
+
+				// //armObject.rotation.y = -0.25 * Math.PI;
+
+                // // Set shadow property
+                // arm2Object.castShadow = true;
+                // arm2Object.receiveShadow = true;
 
 
-				const headGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-                const headMaterial = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,0)' });
-                const headObject = new THREE.Mesh(headGeometry, headMaterial);
-                character.add(headObject);
-
-                // Set position of the head
-
-                headObject.translateY(1.25);
-
-				//headObject.rotation.y = -0.25 * Math.PI;
-
-                // Set shadow property
-                headObject.castShadow = true;
-                headObject.receiveShadow = true;
-
-				// ************************** //
-                // Create an arm
-                // ************************** //
-
-				const armLength = 1;
-				const armMuscle = 0.3;
-
-				const armGeometry = new THREE.BoxGeometry(armLength, 0.3, armMuscle);
-                const armMaterial = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,0)' });
-                const armObject = new THREE.Mesh(armGeometry, armMaterial);
-                character.add(armObject);
-
-                // Set position of the arm
-
-                armObject.translateY(0.5);
-				armObject.translateZ(0.65);
-				armObject.translateX(0.65);
-
-				//armObject.rotation.y = -0.25 * Math.PI;
-
-                // Set shadow property
-                armObject.castShadow = true;
-                armObject.receiveShadow = true;
-
-				// ************************** //
-                // Create the other arm
-                // ************************** //
-
-				const arm2Geometry = new THREE.BoxGeometry(armLength, 0.3, armMuscle);
-                const arm2Material = new THREE.MeshPhongMaterial({ color: 'rgb(255,255,0)' });
-                const arm2Object = new THREE.Mesh(arm2Geometry, arm2Material);
-                character.add(arm2Object);
-
-                // Set position of the arm
-
-                arm2Object.translateY(0.5);
-				arm2Object.translateZ(-0.65);
-				arm2Object.translateX(0.65);
-
-				//armObject.rotation.y = -0.25 * Math.PI;
-
-                // Set shadow property
-                arm2Object.castShadow = true;
-                arm2Object.receiveShadow = true;
-
-
-				const characterBack = cubeObject.position.x - cubeWidth/2;
-				const characterFront = cubeObject.position.x + armLength;
-				const characterRight = cubeObject.position.x + (cubeDepth/2 + armMuscle);
-				const characterLeft = cubeObject.position.x - (cubeDepth/2 + armMuscle);
+				// const characterBack = cubeObject.position.x - cubeWidth/2;
+				// const characterFront = cubeObject.position.x + armLength;
+				// const characterRight = cubeObject.position.x + (cubeDepth/2 + armMuscle);
+				// const characterLeft = cubeObject.position.x - (cubeDepth/2 + armMuscle);
 
 				
 
