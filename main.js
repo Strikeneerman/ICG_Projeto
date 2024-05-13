@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 
+import {FBXLoader} from 'three/addons/loaders/FBXLoader.js'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 
@@ -97,12 +98,38 @@ class MainFunction {
       plane.rotation.x = -Math.PI / 2;
       this.scene.add(plane);
   
+      this.mixer = [];
       this.previousRAF = null;
   
-      //this.LoadModel();
+      this.LoadAnimatedModel();
       this.RAF();
     }
-    //   LoadModel() {
+
+    //Load the model
+
+    LoadAnimatedModel() {
+        const loader = new FBXLoader();
+        loader.setPath('./resources/models/');
+        loader.load('Dude.fbx', (fbx) => {
+          fbx.scale.setScalar(0.1);
+          fbx.traverse(c => {
+            c.castShadow = true;
+          });
+          //Add the animation
+          const anim = new FBXLoader();
+          anim.setPath('./resources/animations/');
+          anim.load('Walking.fbx', (anim) => {
+            this.mixer = new THREE.AnimationMixer(fbx);
+            const idle = this.mixer.clipAction(anim.animations[0]);
+            idle.play();
+          });
+          this.scene.add(fbx);
+        });
+    }
+
+
+
+    //   LoadStaticModel() {
     //     const loader = new GLTFLoader();
     //     loader.load('./resources/thing.glb', (gltf) => {
     //       gltf.scene.traverse(c => {
@@ -119,30 +146,24 @@ class MainFunction {
       }
     
       RAF() {
-        requestAnimationFrame(() => {
-        //   if (this.previousRAF === null) {
-        //     this.previousRAF = t;
-        //   }
-    
-         
-    
-          this.renderer.render(this.scene, this.camera);
+        requestAnimationFrame((t) => {
+          if (this.previousRAF === null) {
+            this.previousRAF = t;
+          }
           this.RAF();
-        //   this.Step(t - this.previousRAF);
-        //   this.previousRAF = t;
+          this.renderer.render(this.scene, this.camera);
+          this.Step(t - this.previousRAF);
+          this.previousRAF = t;
         });
       }
     
-    //   Step(timeElapsed) {
-    //     const timeElapsedS = timeElapsed * 0.001;
-    //     if (this._mixers) {
-    //       this._mixers.map(m => m.update(timeElapsedS));
-    //     }
-    
-    //     if (this._controls) {
-    //       this._controls.Update(timeElapsedS);
-    //     }
-    //   }
+      Step(timeElapsed) {
+        const timeElapsedS = timeElapsed * 0.001;
+        if (this.mixer) {
+          this.mixer.map(m => m.update(timeElapsedS));
+        }
+
+      }
 }
 
     
