@@ -110,7 +110,7 @@ class MainFunction {
     LoadAnimatedModel() {
         const loader = new FBXLoader();
         loader.setPath('./resources/models/');
-        loader.load('Dude.fbx', (fbx) => {
+        loader.load('XBot.fbx', (fbx) => {
           fbx.scale.setScalar(0.1);
           fbx.traverse(c => {
             c.castShadow = true;
