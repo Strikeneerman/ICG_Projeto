@@ -52,8 +52,6 @@ class MainFunction {
       light.shadow.bias = -0.001;
       light.shadow.mapSize.width = 2048;
       light.shadow.mapSize.height = 2048;
-      light.shadow.camera.near = 0.1;
-      light.shadow.camera.far = 500.0;
       light.shadow.camera.near = 0.5;
       light.shadow.camera.far = 500.0;
       light.shadow.camera.left = 100;
@@ -75,11 +73,11 @@ class MainFunction {
       // Load skybox texture
 
       const cubeTextureLoader = new THREE.CubeTextureLoader();
-      cubeTextureLoader.setPath('./resources/');
+      cubeTextureLoader.setPath('resources/skybox/');
       const texture = cubeTextureLoader.load([
-        'skybox_right.png',
         'skybox_left.png',
-        'skybox_top.png',
+        'skybox_right.png',
+        'skybox_up.png',
         'skybox_down.png',
         'skybox_front.png',
         'skybox_back.png',
@@ -121,7 +119,7 @@ class MainFunction {
       }
     
       RAF() {
-        requestAnimationFrame((t) => {
+        requestAnimationFrame(() => {
         //   if (this.previousRAF === null) {
         //     this.previousRAF = t;
         //   }
