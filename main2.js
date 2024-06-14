@@ -71,10 +71,9 @@ class CharacterController{
       loader.setPath('./resources/models/Player/animations/');
       loader.load('PlayerIdle.fbx', (a) => {OnLoad('idle', a); });
       loader.load('Walking.fbx', (a) => {OnLoad('walk', a); });
-     // loader.load('Running.fbx', (a) => {OnLoad('run', a); });
       loader.load('FiringRifle.fbx', (a) => {OnLoad('shoot', a); });
       loader.load('FiringRifleWalk.fbx', (a) => {OnLoad('shootAndWalk', a); });
-     // loader.load('FiringRifleRun.fbx', (a) => {OnLoad('shootAndRun', a); });
+    
 
     });
   };
@@ -165,7 +164,7 @@ class CharacterControllerInput{
       left: false,
       right: false,
       space: false,
-      //shift: false,
+    
     };
 
     document.addEventListener('keydown', (e) => this.onKeyDown(e), false);
@@ -186,18 +185,11 @@ class CharacterControllerInput{
           case 87: //w
               this.keys.forward = true;
               break;
-          // case 69: //e
-          //     this.keys.right = true;
-          //     break;
-          // case 81: //q
-          //     this.keys.right = true;
-              break;
+          
           case 32: //space
               this.keys.space = true;
               break;
-          // case 16: //shift
-          //     this.keys.shift = true;
-          //     break;
+       
         }
     }
 
@@ -215,18 +207,11 @@ class CharacterControllerInput{
           case 87: //w
               this.keys.forward = false;
               break;
-          // case 69: //e
-          //     this.keys.right = true;
-          //     break;
-          // case 81: //q
-          //     this.keys.right = true;
-              break;
+         
           case 32: //space
               this.keys.space = false;
               break;
-          // case 16: //shift
-          //     this.keys.shift = true;
-          //     break;
+          
           
       }
     }
@@ -285,8 +270,6 @@ class CharacterSM extends StateMachine{
     this.AddState('walk', WalkState);
     this.AddState('shoot', ShootState);
     this.AddState('shootAndWalk', ShootAndWalkState);
-    //this.AddState('run', RunState);
-    //this.AddState('shootAndRun', ShootAndRunState);
   }
 };
 
@@ -330,10 +313,7 @@ class IdleState extends State {
 
   Update(_, input) {
     if(input.keys.forward || input.keys.backward){
-      // if (input.keys.shift){
-      //   this.parent.SetState('run');
-      // }
-      // else{
+    
         this.parent.SetState('walk');
       }
         
@@ -379,10 +359,7 @@ class ShootState extends State {
   Update(_, input) {
     if (input.keys.space) {
       if (input.keys.forward || input.keys.backward) {
-        // if (input.keys.shift){
-        //   this.parent.SetState('shootAndRun');
-        // }
-        // else{
+    
           this.parent.SetState('shootAndWalk');
         
         
@@ -490,127 +467,6 @@ class WalkState extends State {
     }
   }
 };
-
-// class RunState extends State {
-//   constructor(parent) {
-//     super(parent);
-//   }
-
-//   get Name() {
-//     return 'run';
-//   }
-
-//   Enter(prevState) {
-//     const curAction = this.parent.proxy.animations['run'].action;
-//     if (prevState) {
-//       const prevAction = this.parent.proxy.animations[prevState.Name].action;
-
-//       if (prevState.Name == 'walk') {
-//         const ratio = curAction.getClip().duration / prevAction.getClip().duration;
-//         curAction.time = prevAction.time * ratio;
-//       } else {
-//         curAction.time = 0.0;
-//         curAction.setEffectiveTimeScale(1.0);
-//         curAction.setEffectiveWeight(1.0);
-//       }
-
-//       curAction.crossFadeFrom(prevAction, 0.5, true);
-//       curAction.play();
-//     } else {
-//       curAction.play();
-//     }
-//   }
-
-//   Exit() {
-//   }
-
-//   Update(timeElapsed, input) {
-//     if (input.keys.forward || input.keys.backward) {
-//       if (!input.keys.shift){
-//         if(input.keys.space){
-//           this.parent.SetState('shootAndWalk');
-//         }
-//         else{
-//           this.parent.SetState('walk');
-//         }
-//       }
-//       else if (input.keys.space){
-//         this.parent.SetState('shootAndRun');
-//       }
-//       else{
-//         return;
-//       }
-//     }
-//     else if (input.keys.space) {
-//       this.parent.SetState('shoot');
-//     }
-//     else{
-//       this.parent.SetState('idle');
-//     }
-//   }
-// };
-
-// class ShootAndRunState extends State {
-//   constructor(parent) {
-//     super(parent);
-//   }
-
-//   get Name() {
-//     return 'shootAndRun';
-//   }
-
-//   Enter(prevState) {
-//     const curAction = this.parent.proxy.animations['shootAndRun'].action;
-//     if (prevState) {
-//       const prevAction = this.parent.proxy.animations[prevState.Name].action;
-
-//       if (prevState.Name == 'shootAndWalk') {
-//         const ratio = curAction.getClip().duration / prevAction.getClip().duration;
-//         curAction.time = prevAction.time * ratio;
-//       } else {
-//         curAction.time = 0.0;
-//         curAction.setEffectiveTimeScale(1.0);
-//         curAction.setEffectiveWeight(1.0);
-//       }
-//       curAction.crossFadeFrom(prevAction, 0.5, true);
-//       curAction.play();
-//     } else {
-//       curAction.play();
-//     }
-//   }
-
-//   Exit() {
-//   }
-
-//   Update(_, input) {
-//     if (input.keys.space) {
-//       if (input.keys.forward || input.keys.backward) {
-//       // if (!input.keys.shift){
-//       //   if(input.keys.space){
-//       //     this.parent.SetState('shootAndWalk');
-//       //   }
-//       //   else{
-//       //     this.parent.SetState('walk');
-//       //   }
-//       // }
-//       // else if (input.keys.space){
-//         return
-//       }
-//       else{
-//         this.parent.SetState('shoot');
-//       }
-//     }
-//     else if (input.keys.forward || input.keys.backward) {
-//       this.parent.SetState('walk');
-//     }
-//     else{
-//       this.parent.SetState('idle');
-//     }
-//   }
-     
-// };
-
-
 
 
 // Main function
@@ -729,26 +585,6 @@ class MainFunction {
 
     };
 
-    // LoadAnimatedModel() {
-    //     const loader = new FBXLoader();
-    //     loader.setPath('./resources/models/Player/');
-    //     loader.load('PlayerModel.fbx', (fbx) => {
-    //       fbx.scale.setScalar(0.1);
-    //       fbx.traverse(c => {
-    //         c.castShadow = true;
-    //       });
-    //       //Add the animation
-    //       const anim = new FBXLoader();
-    //       anim.setPath('./resources/models/Player/animations/');
-    //       anim.load('PlayerIdle.fbx', (anim) => {
-    //         const m = new THREE.AnimationMixer(fbx);
-    //         this.mixers.push(m);
-    //         const idle = m.clipAction(anim.animations[0]);
-    //         idle.play();
-    //       });
-    //       this.scene.add(fbx);
-    //     });
-    //  }
       OnWindowResize() {
         this.camera.aspect = window.innerWidth / window.innerHeight;
         this.camera.updateProjectionMatrix();
